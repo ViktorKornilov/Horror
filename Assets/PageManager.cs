@@ -25,5 +25,6 @@ public class PageManager : MonoBehaviour
 		}
 
 		// 3 more pages
+		// enemy becomes stronger, sounds, second enemy
 	}
 }

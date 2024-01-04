@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     public float speed = 1;
     public int wanderChance = 100;
     public float wanderDistance = 5;
+    public Animator animator;
 
     Rigidbody rb;
     NavMeshAgent agent;
@@ -16,6 +17,7 @@ public class Enemy : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
+        animator.Play("Idle");
     }
 
     void Update()
@@ -35,6 +37,17 @@ public class Enemy : MonoBehaviour
         {
             var offset = Random.insideUnitSphere * wanderDistance;
             agent.destination = transform.position + offset;
+        }
+
+
+        // ANIMATION
+        if (agent.velocity == Vector3.zero)
+        {
+            animator.Play("Idle");
+        }
+        else
+        {
+            animator.Play("Run");
         }
 
         if (distance < 1f)

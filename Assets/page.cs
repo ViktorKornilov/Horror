@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PageManager : MonoBehaviour
+public class page : MonoBehaviour
 {
     public int pages;
     public Enemy enemy;
@@ -37,5 +37,4 @@ public class PageManager : MonoBehaviour
             source.Play();
         }
     }
-    
 }

@@ -15,11 +15,13 @@ public class Enemy : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
-        agent.speed = speed;
     }
 
     void Update()
     {
+        if (target == null) return;
+
+        agent.speed = speed;
 
         var distance = Vector3.Distance(transform.position, target.position);
 

@@ -21,11 +21,19 @@ public class Enemy : MonoBehaviour
 	void Update()
 	{
 		var currentSpeed = agent.velocity.magnitude;
-		if (currentSpeed == 0)
+
+
+		var distance = Vector3.Distance(transform.position, target.position);
+		if (distance < 1.5f)
+		{
+			// JUMPSCARE
+			speed = 0;
+			animator.Play("Scream");
+		} else if (currentSpeed == 0)
 		{
 			animator.Play("Idle");
 		}
-		else if(currentSpeed < 3)
+		else if(currentSpeed < 4)
 		{
 			animator.Play("Walk");
 		}
@@ -36,8 +44,6 @@ public class Enemy : MonoBehaviour
 
 		agent.speed = speed;
 
-
-		var distance = Vector3.Distance(transform.position, target.position);
 		if (distance < viewDistance)
 		{
 			// SEEK
@@ -51,11 +57,6 @@ public class Enemy : MonoBehaviour
 				var offset = Random.insideUnitSphere * wanderDistance;
 				agent.destination = transform.position + offset;
 			}
-		}
-
-		if (distance < 1f)
-		{
-			// JUMPSCARE
 		}
 	}
 }
